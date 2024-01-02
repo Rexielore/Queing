@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Panel</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-5">Welcome to the Admin Panel</h1>
+
+        <div class="mt-4">
+            <h2>Add a Teller</h2>
+            <form action="/addTeller" method="POST">
+                <div class="form-group">
+                    <label for="tellerUsername">Username:</label>
+                    <input type="text" class="form-control" id="tellerUsername" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="tellerPassword">Password:</label>
+                    <input type="password" class="form-control" id="tellerPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="tellerFullName">Full Name:</label>
+                    <input type="text" class="form-control" id="tellerFullName" name="fullname" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Teller</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

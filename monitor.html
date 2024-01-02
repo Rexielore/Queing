@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Queue Monitor</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-sm">
+            <tbody id="history-table">
+                <tr>
+                    <td>Loading...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <script>
+        const historyTable = document.getElementById('history-table');
+        const sound = document.getElementById('sound');
+
+        const socket = new WebSocket('ws://localhost:3000');
+        // CONNECTION SA WEBSOCKET
+        socket.addEventListener('open', (event) => {
+            console.log('WebSocket connection opened');
+        });
+        // WebSocket URL MESSAGE PARA SA TABLE
+        socket.addEventListener('message', (event) => {
+            const data = JSON.parse(event.data);
+            const history = data.history;
+
+
+            historyTable.innerHTML = '';
+
+
+            for (let i = history.length - 1; i >= 0; i--) {
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.textContent = "TELLER #" + history[i].toString();
+                row.appendChild(cell);
+                historyTable.appendChild(row);
+            }
+
+
+            announceNumber(history[history.length - 1]);
+        });
+        // WEB SOCKET KUNG MAG ERROR
+        socket.addEventListener('error', (event) => {
+            console.error('WebSocket error:', event);
+        });
+
+        //AI MAG ANNOUNCE
+        function announceNumber(number) {
+            if ('speechSynthesis' in window) {
+                const message = new SpeechSynthesisUtterance(`Now serving number ${number}`);
+                speechSynthesis.speak(message);
+            }
+        }
+    </script>
+</body>
+
+</html>

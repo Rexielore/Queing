@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Teller Page</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="container">
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <h1>Teller Page</h1>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <button id="enqueue-button" class="btn btn-primary">Next</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('enqueue-button').addEventListener('click', async() => {
+            const response = await fetch('/enqueue', {
+                method: 'POST'
+            });
+        });
+    </script>
+</body>
+
+</html>
